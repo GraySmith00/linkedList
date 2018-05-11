@@ -1,0 +1,27 @@
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.page-container {
+  display: flex;
+}
+
+.bookmark-entry-container {
+  background-color: #455a64;
+  flex: 1;
+}
+
+.bookmark-form input {
+  outline: none;
+}
+
+.bookmark-display-container {
+  background-color: #cfd8dc;
+  flex: 1;
+}
