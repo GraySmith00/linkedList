@@ -34,6 +34,10 @@ bookmarkDisplay.addEventListener('click', function(e) {
 });
 
 function createBookmark(title, url) {
+  if (title.length === 0 || url.length === 0) {
+    alert('Ooooops!!! Looks like you left out an input!');
+    return;
+  }
   // 1. create new bookmark object from constructor function
   var bookmarkObject = new Bookmark(title, url);
   // 2. push new bookmark object into bookmarks array
