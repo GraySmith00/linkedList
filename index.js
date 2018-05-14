@@ -9,18 +9,22 @@ var bookmarkDisplay = document.querySelector("#bookmark-display");
 
 var bookmarksArray = [];
 
+function Bookmark(title, url) {
+  this.title = title;
+  this.url = url;
+  this.read = false;
+}
+
 bookmarkSubmit.addEventListener("click", function(e) {
   e.preventDefault();
-  createBookmark();
+  createBookmark(titleInput.value, urlInput.value);
   displayBookmarks();
   bookmarkForm.reset();
 });
 
-function createBookmark() {
-  var bookmarkObject = {
-    title: titleInput.value,
-    url: urlInput.value
-  };
+function createBookmark(title, url) {
+  var bookmarkObject = new Bookmark(title, url);
+
   bookmarksArray.push(bookmarkObject);
 }
 
