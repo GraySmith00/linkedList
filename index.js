@@ -2,9 +2,6 @@ var bookmarkForm = document.querySelector("#bookmark-form");
 var titleInput = document.querySelector("#title-input");
 var urlInput = document.querySelector("#url-input");
 var bookmarkSubmit = document.querySelector("#bookmark-submit");
-var bookmarkDisplayContainer = document.querySelector(
-  "bookmark-display-container"
-);
 var bookmarkDisplay = document.querySelector("#bookmark-display");
 
 var bookmarksArray = [];
@@ -21,6 +18,8 @@ bookmarkForm.addEventListener("submit", function(e) {
   displayBookmarks();
   bookmarkForm.reset();
 });
+
+bookmarkDisplay.addEventListener("click", toggleRead);
 
 function createBookmark(title, url) {
   var bookmarkObject = new Bookmark(title, url);
@@ -39,12 +38,17 @@ displayBookmarks();
 
 function displaySingleBookmark(i) {
   var bookmarkDiv = document.createElement("div");
+  bookmarkDiv.setAttribute("data-index", i);
   bookmarkDisplay.appendChild(bookmarkDiv).innerHTML = `
       <h2>${bookmarksArray[i].title}</h2>
       <p>${bookmarksArray[i].url}</p>
       <div>
-        <p>Read</p>
+        <p class="read-button">Read</p>
         <p>Delete</p>
       </div>
     `;
+}
+
+function toggleRead(e) {
+  console.log(e);
 }
