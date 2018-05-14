@@ -33,7 +33,18 @@ bookmarkDisplay.addEventListener('click', function(e) {
   removeBookmark(e);
 });
 
+titleInput.addEventListener('keyup', function() {
+  isInputPopulated();
+});
+urlInput.addEventListener('keyup', function() {
+  isInputPopulated();
+});
+
 function createBookmark(title, url) {
+  if (title.length === 0 || url.length === 0) {
+    alert('Ooooops!!! Looks like you left out an input!');
+    return;
+  }
   // 1. create new bookmark object from constructor function
   var bookmarkObject = new Bookmark(title, url);
   // 2. push new bookmark object into bookmarks array
@@ -109,3 +120,12 @@ function removeBookmark(e) {
     displayBookmarks();
   }
 }
+
+function isInputPopulated() {
+  if (titleInput.value && urlInput.value) {
+    bookmarkSubmit.disabled = false;
+  } else {
+    bookmarkSubmit.disabled = true;
+  }
+}
+isInputPopulated();
