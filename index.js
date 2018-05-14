@@ -1,8 +1,8 @@
-var bookmarkForm = document.querySelector("#bookmark-form");
-var titleInput = document.querySelector("#title-input");
-var urlInput = document.querySelector("#url-input");
-var bookmarkSubmit = document.querySelector("#bookmark-submit");
-var bookmarkDisplay = document.querySelector("#bookmark-display");
+var bookmarkForm = document.querySelector('#bookmark-form');
+var titleInput = document.querySelector('#title-input');
+var urlInput = document.querySelector('#url-input');
+var bookmarkSubmit = document.querySelector('#bookmark-submit');
+var bookmarkDisplay = document.querySelector('#bookmark-display');
 
 var bookmarksArray = [];
 
@@ -12,14 +12,14 @@ function Bookmark(title, url) {
   this.read = false;
 }
 
-bookmarkForm.addEventListener("submit", function(e) {
+bookmarkForm.addEventListener('submit', function(e) {
   e.preventDefault();
   createBookmark(titleInput.value, urlInput.value);
   displayBookmarks();
   bookmarkForm.reset();
 });
 
-bookmarkDisplay.addEventListener("click", toggleRead);
+bookmarkDisplay.addEventListener('click', toggleRead);
 
 function createBookmark(title, url) {
   var bookmarkObject = new Bookmark(title, url);
@@ -27,7 +27,7 @@ function createBookmark(title, url) {
 }
 
 function displayBookmarks() {
-  bookmarkDisplay.innerHTML = "";
+  bookmarkDisplay.innerHTML = '';
   if (bookmarksArray.length > 0) {
     for (var i = 0; i < bookmarksArray.length; i++) {
       displaySingleBookmark(i);
@@ -37,8 +37,12 @@ function displayBookmarks() {
 displayBookmarks();
 
 function displaySingleBookmark(i) {
-  var bookmarkDiv = document.createElement("div");
-  bookmarkDiv.setAttribute("data-index", i);
+  var bookmarkDiv = document.createElement('div');
+  bookmarkDiv.setAttribute('data-index', i);
+  if (bookmarksArray[i].read) {
+    bookmarkDiv.setAttribute('class', 'read');
+  }
+  console.log(bookmarkDiv);
   bookmarkDisplay.appendChild(bookmarkDiv).innerHTML = `
       <h2>${bookmarksArray[i].title}</h2>
       <p>${bookmarksArray[i].url}</p>
@@ -50,5 +54,13 @@ function displaySingleBookmark(i) {
 }
 
 function toggleRead(e) {
-  console.log(e);
+  if (
+    e.target.attributes.class &&
+    e.target.attributes.class.nodeValue === 'read-button'
+  ) {
+    var bookmarkElement = e.target.parentNode.parentNode;
+    var bookmarkIndex = bookmarkElement.dataset.index;
+    bookmarksArray[bookmarkIndex].read = !bookmarksArray[bookmarkIndex].read;
+    displayBookmarks();
+  }
 }

@@ -10,6 +10,7 @@ body {
 
 .page-container {
   display: flex;
+  height: 100vh;
 }
 
 .bookmark-entry-container {
@@ -24,4 +25,8 @@ body {
 .bookmark-display-container {
   background-color: #cfd8dc;
   flex: 1;
+}
+
+.read .read-button {
+  color: red;
 }
