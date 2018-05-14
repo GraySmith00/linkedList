@@ -15,7 +15,7 @@ function Bookmark(title, url) {
   this.read = false;
 }
 
-bookmarkSubmit.addEventListener("click", function(e) {
+bookmarkForm.addEventListener("submit", function(e) {
   e.preventDefault();
   createBookmark(titleInput.value, urlInput.value);
   displayBookmarks();
@@ -24,23 +24,27 @@ bookmarkSubmit.addEventListener("click", function(e) {
 
 function createBookmark(title, url) {
   var bookmarkObject = new Bookmark(title, url);
-
   bookmarksArray.push(bookmarkObject);
 }
 
 function displayBookmarks() {
+  bookmarkDisplay.innerHTML = "";
   if (bookmarksArray.length > 0) {
-    var bookmarkDiv = document.createElement("div");
-    bookmarkDisplay.appendChild(bookmarkDiv).innerHTML = `
-      <h2>${bookmarksArray[bookmarksArray.length - 1].title}</h2>
-      <p>${bookmarksArray[bookmarksArray.length - 1].url}</p>
+    for (var i = 0; i < bookmarksArray.length; i++) {
+      displaySingleBookmark(i);
+    }
+  }
+}
+displayBookmarks();
+
+function displaySingleBookmark(i) {
+  var bookmarkDiv = document.createElement("div");
+  bookmarkDisplay.appendChild(bookmarkDiv).innerHTML = `
+      <h2>${bookmarksArray[i].title}</h2>
+      <p>${bookmarksArray[i].url}</p>
       <div>
         <p>Read</p>
         <p>Delete</p>
       </div>
     `;
-  }
 }
-displayBookmarks();
-
-function displaySingleBookmark() {}
