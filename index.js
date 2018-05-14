@@ -33,6 +33,13 @@ bookmarkDisplay.addEventListener('click', function(e) {
   removeBookmark(e);
 });
 
+titleInput.addEventListener('keyup', function() {
+  isInputPopulated();
+});
+urlInput.addEventListener('keyup', function() {
+  isInputPopulated();
+});
+
 function createBookmark(title, url) {
   if (title.length === 0 || url.length === 0) {
     alert('Ooooops!!! Looks like you left out an input!');
@@ -113,3 +120,12 @@ function removeBookmark(e) {
     displayBookmarks();
   }
 }
+
+function isInputPopulated() {
+  if (titleInput.value && urlInput.value) {
+    bookmarkSubmit.disabled = false;
+  } else {
+    bookmarkSubmit.disabled = true;
+  }
+}
+isInputPopulated();
