@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,800');
+
 *,
 *:after,
 *:before {
@@ -6,6 +8,7 @@
 
 body {
   margin: 0;
+  font-family: Open Sans;
 }
 
 .page-container {
@@ -16,10 +19,70 @@ body {
 .bookmark-entry-container {
   background-color: #455a64;
   flex: 1;
+  padding: 1rem;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.bookmark-form input {
+.bookmark-entry-container h1 {
+  color: white;
+  font-size: 2.5rem;
+}
+
+.bookmark-entry-container h1 img {
+  width: 19%;
+}
+
+.bookmark-form {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.bookmark-form .title-input {
   outline: none;
+  line-height: 40px;
+  color: #d0d2d3;
+  font-size: 1.5rem;
+  padding: 0 10px;
+  transform: translateY(5px);
+}
+
+.bookmark-form .url-input {
+  outline: none;
+  line-height: 40px;
+  color: #d0d2d3;
+  font-size: 1.5rem;
+  padding: 0 10px;
+  transform: translateY(5px);
+  margin-top: 40px;
+}
+
+.bookmark-form input::placeholder {
+  color: #d0d2d3;
+  font-size: 1.5rem;
+}
+
+.bookmark-form button {
+  background-color: #ffc107;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-top: 40px;
+  padding: 8px 0;
+}
+
+.bookmark-form button:hover {
+  background-color: #ffd773;
+}
+
+.bookmark-form button:disabled {
+  background-color: #ffd773;
 }
 
 .bookmark-display-container {
