@@ -1,9 +1,11 @@
+// grabbing the DOM elements from HTML and setting to global variables
 var bookmarkForm = document.querySelector('#bookmark-form');
 var titleInput = document.querySelector('#title-input');
 var urlInput = document.querySelector('#url-input');
 var bookmarkSubmit = document.querySelector('#bookmark-submit');
 var bookmarkDisplay = document.querySelector('#bookmark-display');
 
+// declaring the bookmarksArray and setting it to an empty array
 var bookmarksArray = [];
 
 // bookmakr constructor function (blueprint for creating bookmarks)
@@ -62,7 +64,7 @@ function displaySingleBookmark(i) {
   if (bookmarksArray[i].read) {
     bookmarkDiv.setAttribute('class', 'read');
   }
-  // 4. adds the bookmarkDiv as a child to bookmarkDisplay,
+  // 4. adds the bookmarkDiv as a child to bookmarkDisplay, set innerHTML
   bookmarkDisplay.appendChild(bookmarkDiv).innerHTML = `
       <h2>${bookmarksArray[i].title}</h2>
       <p>${bookmarksArray[i].url}</p>
@@ -74,28 +76,36 @@ function displaySingleBookmark(i) {
 }
 
 function toggleRead(e) {
+  // 1. target the correct html element
   if (
+    // 2. target the html element with the class of 'read-button'
     e.target.attributes.class &&
     e.target.attributes.class.nodeValue === 'read-button'
   ) {
+    // 3. setting the bookmark outer div to bookmarkElement
     var bookmarkElement = e.target.parentNode.parentNode;
+    // 4. grabbing the Index from the outer div's data-index attribute
     var bookmarkIndex = bookmarkElement.dataset.index;
+    // 5. toggling the read property on the object in the bookmarks array
     bookmarksArray[bookmarkIndex].read = !bookmarksArray[bookmarkIndex].read;
+    // 6. re rendering the bookmarks
     displayBookmarks();
   }
 }
 
 function removeBookmark(e) {
+  // 1. target the correct html element
   if (
+    // 2. target the html element with the class of 'delete-button'
     e.target.attributes.class &&
     e.target.attributes.class.nodeValue === 'delete-button'
   ) {
-    // 1. target the delete button on the boomark
+    // 3. target the delete button on the boomark
     var bookmarkElement = e.target.parentNode.parentNode;
     var bookmarkIndex = bookmarkElement.dataset.index;
-    // 2. when delete button is pressed removes bookmark from the array
+    // 4. when delete button is pressed removes bookmark from the array
     bookmarksArray.splice(bookmarkIndex, 1);
-    // 3. displays bookmarks without the deleted bookmark
+    // 5. displays bookmarks without the deleted bookmark
     displayBookmarks();
   }
 }
