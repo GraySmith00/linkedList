@@ -24,6 +24,7 @@ bookmarkForm.addEventListener('submit', function(e) {
   displayBookmarks();
   // 4. clear the bookmark form
   bookmarkForm.reset();
+  console.log(bookmarksArray);
 });
 
 bookmarkDisplay.addEventListener('click', function(e) {
@@ -71,17 +72,18 @@ function displaySingleBookmark(i) {
   var bookmarkDiv = document.createElement('div');
   // 2. adding the data-index=i attribute to the div, so we know which bookmark is which
   bookmarkDiv.setAttribute('data-index', i);
+  bookmarkDiv.setAttribute('class', 'bookmark-element');
   // 3. if read property on bookmark object is set to true, add the class of read to the bookmark div
   if (bookmarksArray[i].read) {
-    bookmarkDiv.setAttribute('class', 'read');
+    bookmarkDiv.setAttribute('class', 'bookmark-element read');
   }
   // 4. adds the bookmarkDiv as a child to bookmarkDisplay, set innerHTML
   bookmarkDisplay.appendChild(bookmarkDiv).innerHTML = `
       <h2>${bookmarksArray[i].title}</h2>
       <p>${bookmarksArray[i].url}</p>
       <div>
-        <p class="read-button">Read</p>
-        <p class="delete-button">Delete</p>
+        <span class="read-button">Read</span>
+        <span class="delete-button">Delete</span>
       </div>
     `;
 }
@@ -90,8 +92,8 @@ function toggleRead(e) {
   // 1. target the correct html element
   if (
     // 2. target the html element with the class of 'read-button'
-    e.target.attributes.class &&
-    e.target.attributes.class.nodeValue === 'read-button'
+    e.target.className &&
+    e.target.className === 'read-button'
   ) {
     // 3. setting the bookmark outer div to bookmarkElement
     var bookmarkElement = e.target.parentNode.parentNode;
@@ -108,8 +110,8 @@ function removeBookmark(e) {
   // 1. target the correct html element
   if (
     // 2. target the html element with the class of 'delete-button'
-    e.target.attributes.class &&
-    e.target.attributes.class.nodeValue === 'delete-button'
+    e.target.className &&
+    e.target.className === 'delete-button'
   ) {
     // 3. target the delete button on the boomark
     var bookmarkElement = e.target.parentNode.parentNode;

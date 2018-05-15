@@ -29,17 +29,19 @@ body {
 
 .bookmark-entry-container h1 {
   color: white;
-  font-size: 2.5rem;
+  font-size: 3.5rem;
+  margin-bottom: 25px;
 }
 
 .bookmark-entry-container h1 img {
-  width: 19%;
+  width: 4.5rem;
 }
 
 .bookmark-form {
   display: flex;
   flex-direction: column;
   align-content: center;
+  margin: 0 20px;
 }
 
 .bookmark-form .title-input {
@@ -81,15 +83,97 @@ body {
   background-color: #ffd773;
 }
 
-.bookmark-form button:disabled {
-  background-color: #ffd773;
-}
+/* .bookmark-form button:disabled {
+  background-color: #fae9bc;
+} */
 
 .bookmark-display-container {
   background-color: #cfd8dc;
   flex: 1;
+  overflow: scroll;
+  min-height: 500px;
+}
+
+.bookmark-element {
+  margin: 5%;
+  padding: 0 3%;
+  background-color: #fff;
+  border: 2px solid #607d8b;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex;
+}
+
+.bookmark-element h2 {
+  border-bottom: 2px solid #cfd8dc;
+  padding-bottom: 5px;
+  margin-bottom: 0;
+  color: #455a64;
+}
+
+.bookmark-element p {
+  border-bottom: 2px solid #cfd8dc;
+  padding: 15px 0;
+  margin: 0;
+  text-decoration: underline;
+  text-decoration-color: #f2f4f4;
+}
+
+.bookmark-element p:hover {
+  text-decoration-color: #ffc107;
+  font-weight: 800;
+  color: #455a64;
+}
+
+.bookmark-element div {
+  color: #455a64;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.bookmark-element div span {
+  text-decoration-line: underline;
+  text-decoration-color: #f2f4f4;
+}
+
+.bookmark-element div span:hover {
+  text-decoration-color: #ffc107;
+  font-weight: 800;
+  color: #455a64;
 }
 
 .read .read-button {
-  color: red;
+  color: #f05a28;
+  font-weight: 800;
+}
+
+@media only screen and (max-width: 845px) {
+  .page-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .bookmark-entry-container {
+    padding-bottom: 30px;
+  }
+
+  .bookmark-entry-container h1 {
+    font-size: 2.5rem;
+  }
+
+  .bookmark-entry-container h1 img {
+    width: 3.5rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .bookmark-entry-container h1 {
+    font-size: 2rem;
+  }
+  .bookmark-entry-container h1 img {
+    width: 2.8rem;
+  }
 }
