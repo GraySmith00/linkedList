@@ -58,7 +58,7 @@ function displayBookmarks() {
 
   // 2. loop through the bookmarks array
   if (bookmarksArray.length > 0) {
-    for (var i = 0; i < bookmarksArray.length; i++) {
+    for (var i = bookmarksArray.length - 1; i >= 0; i--) {
       // 3. call displaySingleBookmark function for each item in bookmarksArray, pass in the index
       displaySingleBookmark(i);
     }
