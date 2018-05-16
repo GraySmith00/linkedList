@@ -4,9 +4,12 @@ var titleInput = document.querySelector('#title-input');
 var urlInput = document.querySelector('#url-input');
 var bookmarkSubmit = document.querySelector('#bookmark-submit');
 var bookmarkDisplay = document.querySelector('#bookmark-display');
-var bookmarkCounterDisplay = document.querySelector(
-  '#bookmark-counter-display'
+var bookmarkCounterSection = document.querySelector(
+  '#bookmark-counter-section'
 );
+var totalBookmarkCounter = document.querySelector('#total-bookmark-counter');
+var readBookmarkCounter = document.querySelector('#read-bookmark-counter');
+var unreadBookmarkCounter = document.querySelector('#unread-bookmark-counter');
 
 // declaring the bookmarksArray and setting it to an empty array
 var bookmarksArray = [];
@@ -27,8 +30,9 @@ bookmarkForm.addEventListener('submit', function(e) {
   displayBookmarks();
   // 4. clear the bookmark form
   bookmarkForm.reset();
-  console.log(bookmarksArray);
   bookmarkCounter();
+  readBookmarksCounter();
+  unreadBookmarksCounter();
 });
 
 bookmarkDisplay.addEventListener('click', function(e) {
@@ -109,6 +113,8 @@ function toggleRead(e) {
     bookmarksArray[bookmarkIndex].read = !bookmarksArray[bookmarkIndex].read;
     // 6. re rendering the bookmarks
     displayBookmarks();
+    readBookmarksCounter();
+    unreadBookmarksCounter();
   }
 }
 
@@ -127,6 +133,8 @@ function removeBookmark(e) {
     // 5. displays bookmarks without the deleted bookmark
     displayBookmarks();
     bookmarkCounter();
+    readBookmarksCounter();
+    unreadBookmarksCounter();
   }
 }
 
@@ -140,8 +148,34 @@ function isInputPopulated() {
 isInputPopulated();
 
 function bookmarkCounter() {
-  bookmarkCounterDisplay.innerHTML = `Total Bookmarks: ${
-    bookmarksArray.length
-  }`;
+  if (bookmarksArray.length > 0) {
+    totalBookmarkCounter.innerHTML = `Total Bookmarks: ${
+      bookmarksArray.length
+    }`;
+  }
 }
 bookmarkCounter();
+
+function readBookmarksCounter() {
+  var readBookmarks = 0;
+  for (var i = 0; i < bookmarksArray.length; i++) {
+    if (bookmarksArray[i].read === true) {
+      readBookmarks++;
+    }
+  }
+  if (bookmarksArray.length > 0) {
+    readBookmarkCounter.innerHTML = `Read Bookmarks: ${readBookmarks}`;
+  }
+}
+
+function unreadBookmarksCounter() {
+  var unreadBookmarks = 0;
+  for (var i = 0; i < bookmarksArray.length; i++) {
+    if (bookmarksArray[i].read === false) {
+      unreadBookmarks++;
+    }
+  }
+  if (bookmarksArray.length > 0) {
+    unreadBookmarkCounter.innerHTML = `Unread Bookmarks: ${unreadBookmarks}`;
+  }
+}
