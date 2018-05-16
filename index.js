@@ -197,7 +197,7 @@ function clearReadBookmarks() {
   for (var i = 0; i < bookmarksArray.length; i++) {
     if (bookmarksArray[i].read === true) {
       bookmarksArray.splice(i, 1);
-      displayBookmarks();
+      clearReadBookmarks();
     }
   }
 
