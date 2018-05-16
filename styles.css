@@ -45,6 +45,7 @@ body {
 }
 
 .bookmark-form .title-input {
+  border: none;
   outline: none;
   line-height: 40px;
   color: #d0d2d3;
@@ -54,6 +55,7 @@ body {
 }
 
 .bookmark-form .url-input {
+  border: none;
   outline: none;
   line-height: 40px;
   color: #d0d2d3;
@@ -109,6 +111,21 @@ body {
   border-bottom: 2px solid #cfd8dc;
   padding-bottom: 5px;
   margin-bottom: 0;
+  color: #455a64;
+}
+
+.bookmark-element a {
+  border-bottom: 2px solid #cfd8dc;
+  padding: 15px 0;
+  margin: 0;
+  text-decoration: underline;
+  text-decoration-color: #f2f4f4;
+  color: #607d8b;
+}
+
+.bookmark-element a:hover {
+  text-decoration-color: #ffc107;
+  font-weight: 800;
   color: #455a64;
 }
 

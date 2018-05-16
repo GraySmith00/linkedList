@@ -80,7 +80,9 @@ function displaySingleBookmark(i) {
   // 4. adds the bookmarkDiv as a child to bookmarkDisplay, set innerHTML
   bookmarkDisplay.appendChild(bookmarkDiv).innerHTML = `
       <h2>${bookmarksArray[i].title}</h2>
-      <p>${bookmarksArray[i].url}</p>
+      <p><a href="${bookmarksArray[i].url}" target="_blank">${
+    bookmarksArray[i].url
+  }</a></p>
       <div>
         <span class="read-button">Read</span>
         <span class="delete-button">Delete</span>
