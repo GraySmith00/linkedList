@@ -7,8 +7,8 @@
 }
 
 body {
-  margin: 0;
   font-family: Open Sans;
+  margin: 0;
 }
 
 .page-container {
@@ -18,13 +18,12 @@ body {
 
 .bookmark-entry-container {
   background-color: #455a64;
-  flex: 1;
-  padding: 1rem;
-  text-align: center;
-
   display: flex;
   flex-direction: column;
+  flex: 1;
   justify-content: center;
+  padding: 1rem;
+  text-align: center;
 }
 
 .bookmark-entry-container h1 {
@@ -38,31 +37,31 @@ body {
 }
 
 .bookmark-form {
+  align-content: center;
   display: flex;
   flex-direction: column;
-  align-content: center;
   margin: 0 20px;
 }
 
 .bookmark-form .title-input {
   border: none;
-  outline: none;
-  line-height: 40px;
   color: #d0d2d3;
   font-size: 1.5rem;
+  line-height: 40px;
+  outline: none;
   padding: 0 10px;
   transform: translateY(5px);
 }
 
 .bookmark-form .url-input {
   border: none;
-  outline: none;
-  line-height: 40px;
   color: #d0d2d3;
   font-size: 1.5rem;
+  line-height: 40px;
+  margin-top: 40px;
+  outline: none;
   padding: 0 10px;
   transform: translateY(5px);
-  margin-top: 40px;
 }
 
 .bookmark-form input::placeholder {
@@ -73,11 +72,11 @@ body {
 .bookmark-form button {
   background-color: #ffc107;
   border: none;
-  outline: none;
   color: #fff;
   font-size: 1.5rem;
   font-weight: 800;
   margin-top: 40px;
+  outline: none;
   padding: 8px 0;
 }
 
@@ -85,62 +84,63 @@ body {
   background-color: #ffd773;
 }
 
-/* .bookmark-form button:disabled {
-  background-color: #fae9bc;
-} */
-
 .bookmark-display-container {
   background-color: #cfd8dc;
   flex: 1;
-  overflow: scroll;
   min-height: 500px;
+  overflow: scroll;
+}
+
+.bookmark-counter-section {
+  color: #607d8b;
+  font-weight: 800;
+  margin: 5%;
 }
 
 .bookmark-element {
-  margin: 5%;
-  padding: 0 3%;
+  align-items: flex;
   background-color: #fff;
   border: 2px solid #607d8b;
-
   display: flex;
   flex-direction: column;
-  align-items: flex;
+  margin: 5%;
+  padding: 0 3%;
 }
 
 .bookmark-element h2 {
   border-bottom: 2px solid #cfd8dc;
-  padding-bottom: 5px;
-  margin-bottom: 0;
   color: #455a64;
+  margin-bottom: 0;
+  padding-bottom: 5px;
 }
 
 .bookmark-element a {
   border-bottom: 2px solid #cfd8dc;
-  padding: 15px 0;
-  margin: 0;
-  text-decoration: underline;
-  text-decoration-color: #f2f4f4;
   color: #607d8b;
+  margin: 0;
+  padding: 15px 0;
+  text-decoration-color: #f2f4f4;
+  text-decoration: underline;
 }
 
 .bookmark-element a:hover {
-  text-decoration-color: #ffc107;
-  font-weight: 800;
   color: #455a64;
+  font-weight: 800;
+  text-decoration-color: #ffc107;
 }
 
 .bookmark-element p {
   border-bottom: 2px solid #cfd8dc;
-  padding: 15px 0;
   margin: 0;
-  text-decoration: underline;
+  padding: 15px 0;
   text-decoration-color: #f2f4f4;
+  text-decoration: underline;
 }
 
 .bookmark-element p:hover {
-  text-decoration-color: #ffc107;
-  font-weight: 800;
   color: #455a64;
+  font-weight: 800;
+  text-decoration-color: #ffc107;
 }
 
 .bookmark-element div {
@@ -152,19 +152,37 @@ body {
 }
 
 .bookmark-element div span {
-  text-decoration-line: underline;
   text-decoration-color: #f2f4f4;
+  text-decoration-line: underline;
 }
 
 .bookmark-element div span:hover {
-  text-decoration-color: #ffc107;
-  font-weight: 800;
   color: #455a64;
+  font-weight: 800;
+  text-decoration-color: #ffc107;
 }
 
 .read .read-button {
   color: #f05a28;
   font-weight: 800;
+}
+
+.clear-read-bookmarks {
+  margin: 0 5% 30px 5%;
+  background-color: #ffc107;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  outline: none;
+  padding: 8px 20px;
+}
+
+.clear-read-bookmarks:hover {
+  background-color: #ffd773;
+}
+
+.display-none {
+  display: none;
 }
 
 @media only screen and (max-width: 845px) {

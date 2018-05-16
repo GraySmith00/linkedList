@@ -10,6 +10,7 @@ var bookmarkCounterSection = document.querySelector(
 var totalBookmarkCounter = document.querySelector('#total-bookmark-counter');
 var readBookmarkCounter = document.querySelector('#read-bookmark-counter');
 var unreadBookmarkCounter = document.querySelector('#unread-bookmark-counter');
+var clearReadBookmarksButton = document.querySelector('#clear-read-bookmarks');
 
 // declaring the bookmarksArray and setting it to an empty array
 var bookmarksArray = [];
@@ -33,7 +34,10 @@ bookmarkForm.addEventListener('submit', function(e) {
   bookmarkCounter();
   readBookmarksCounter();
   unreadBookmarksCounter();
+  displayClearBookmarksButton();
 });
+
+clearReadBookmarksButton.addEventListener('click', clearReadBookmarks);
 
 bookmarkDisplay.addEventListener('click', function(e) {
   // 1. call the toggleRead function when read button is pressed
@@ -66,7 +70,7 @@ function displayBookmarks() {
 
   // 2. loop through the bookmarks array
   if (bookmarksArray.length > 0) {
-    for (var i = bookmarksArray.length - 1; i >= 0; i--) {
+    for (var i = 0; i < bookmarksArray.length; i++) {
       // 3. call displaySingleBookmark function for each item in bookmarksArray, pass in the index
       displaySingleBookmark(i);
     }
@@ -129,12 +133,15 @@ function removeBookmark(e) {
     var bookmarkElement = e.target.parentNode.parentNode;
     var bookmarkIndex = bookmarkElement.dataset.index;
     // 4. when delete button is pressed removes bookmark from the array
+
     bookmarksArray.splice(bookmarkIndex, 1);
+    console.log(bookmarksArray);
     // 5. displays bookmarks without the deleted bookmark
     displayBookmarks();
     bookmarkCounter();
     readBookmarksCounter();
     unreadBookmarksCounter();
+    displayClearBookmarksButton();
   }
 }
 
@@ -152,6 +159,8 @@ function bookmarkCounter() {
     totalBookmarkCounter.innerHTML = `Total Bookmarks: ${
       bookmarksArray.length
     }`;
+  } else {
+    totalBookmarkCounter.innerHTML = '';
   }
 }
 bookmarkCounter();
@@ -165,6 +174,8 @@ function readBookmarksCounter() {
   }
   if (bookmarksArray.length > 0) {
     readBookmarkCounter.innerHTML = `Read Bookmarks: ${readBookmarks}`;
+  } else {
+    readBookmarkCounter.innerHTML = '';
   }
 }
 
@@ -177,5 +188,30 @@ function unreadBookmarksCounter() {
   }
   if (bookmarksArray.length > 0) {
     unreadBookmarkCounter.innerHTML = `Unread Bookmarks: ${unreadBookmarks}`;
+  } else {
+    unreadBookmarkCounter.innerHTML = '';
   }
 }
+
+function clearReadBookmarks() {
+  for (var i = 0; i < bookmarksArray.length; i++) {
+    if (bookmarksArray[i].read === true) {
+      bookmarksArray.splice(i, 1);
+      displayBookmarks();
+    }
+  }
+
+  displayBookmarks();
+  bookmarkCounter();
+  readBookmarksCounter();
+  unreadBookmarksCounter();
+}
+
+function displayClearBookmarksButton() {
+  if (bookmarksArray.length === 0) {
+    clearReadBookmarksButton.classList.add('display-none');
+  } else {
+    clearReadBookmarksButton.classList.remove('display-none');
+  }
+}
+displayClearBookmarksButton();
