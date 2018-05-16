@@ -4,6 +4,9 @@ var titleInput = document.querySelector('#title-input');
 var urlInput = document.querySelector('#url-input');
 var bookmarkSubmit = document.querySelector('#bookmark-submit');
 var bookmarkDisplay = document.querySelector('#bookmark-display');
+var bookmarkCounterDisplay = document.querySelector(
+  '#bookmark-counter-display'
+);
 
 // declaring the bookmarksArray and setting it to an empty array
 var bookmarksArray = [];
@@ -25,6 +28,7 @@ bookmarkForm.addEventListener('submit', function(e) {
   // 4. clear the bookmark form
   bookmarkForm.reset();
   console.log(bookmarksArray);
+  bookmarkCounter();
 });
 
 bookmarkDisplay.addEventListener('click', function(e) {
@@ -122,6 +126,7 @@ function removeBookmark(e) {
     bookmarksArray.splice(bookmarkIndex, 1);
     // 5. displays bookmarks without the deleted bookmark
     displayBookmarks();
+    bookmarkCounter();
   }
 }
 
@@ -133,3 +138,10 @@ function isInputPopulated() {
   }
 }
 isInputPopulated();
+
+function bookmarkCounter() {
+  bookmarkCounterDisplay.innerHTML = `Total Bookmarks: ${
+    bookmarksArray.length
+  }`;
+}
+bookmarkCounter();
