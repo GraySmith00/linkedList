@@ -4,6 +4,13 @@ var titleInput = document.querySelector('#title-input');
 var urlInput = document.querySelector('#url-input');
 var bookmarkSubmit = document.querySelector('#bookmark-submit');
 var bookmarkDisplay = document.querySelector('#bookmark-display');
+var bookmarkCounterSection = document.querySelector(
+  '#bookmark-counter-section'
+);
+var totalBookmarkCounter = document.querySelector('#total-bookmark-counter');
+var readBookmarkCounter = document.querySelector('#read-bookmark-counter');
+var unreadBookmarkCounter = document.querySelector('#unread-bookmark-counter');
+var clearReadBookmarksButton = document.querySelector('#clear-read-bookmarks');
 
 // declaring the bookmarksArray and setting it to an empty array
 var bookmarksArray = [];
@@ -24,8 +31,13 @@ bookmarkForm.addEventListener('submit', function(e) {
   displayBookmarks();
   // 4. clear the bookmark form
   bookmarkForm.reset();
-  console.log(bookmarksArray);
+  bookmarkCounter();
+  readBookmarksCounter();
+  unreadBookmarksCounter();
+  displayClearBookmarksButton();
 });
+
+clearReadBookmarksButton.addEventListener('click', clearReadBookmarks);
 
 bookmarkDisplay.addEventListener('click', function(e) {
   // 1. call the toggleRead function when read button is pressed
@@ -58,7 +70,7 @@ function displayBookmarks() {
 
   // 2. loop through the bookmarks array
   if (bookmarksArray.length > 0) {
-    for (var i = bookmarksArray.length - 1; i >= 0; i--) {
+    for (var i = 0; i < bookmarksArray.length; i++) {
       // 3. call displaySingleBookmark function for each item in bookmarksArray, pass in the index
       displaySingleBookmark(i);
     }
@@ -105,6 +117,8 @@ function toggleRead(e) {
     bookmarksArray[bookmarkIndex].read = !bookmarksArray[bookmarkIndex].read;
     // 6. re rendering the bookmarks
     displayBookmarks();
+    readBookmarksCounter();
+    unreadBookmarksCounter();
   }
 }
 
@@ -119,9 +133,15 @@ function removeBookmark(e) {
     var bookmarkElement = e.target.parentNode.parentNode;
     var bookmarkIndex = bookmarkElement.dataset.index;
     // 4. when delete button is pressed removes bookmark from the array
+
     bookmarksArray.splice(bookmarkIndex, 1);
+    console.log(bookmarksArray);
     // 5. displays bookmarks without the deleted bookmark
     displayBookmarks();
+    bookmarkCounter();
+    readBookmarksCounter();
+    unreadBookmarksCounter();
+    displayClearBookmarksButton();
   }
 }
 
@@ -133,3 +153,65 @@ function isInputPopulated() {
   }
 }
 isInputPopulated();
+
+function bookmarkCounter() {
+  if (bookmarksArray.length > 0) {
+    totalBookmarkCounter.innerHTML = `Total Bookmarks: ${
+      bookmarksArray.length
+    }`;
+  } else {
+    totalBookmarkCounter.innerHTML = '';
+  }
+}
+bookmarkCounter();
+
+function readBookmarksCounter() {
+  var readBookmarks = 0;
+  for (var i = 0; i < bookmarksArray.length; i++) {
+    if (bookmarksArray[i].read === true) {
+      readBookmarks++;
+    }
+  }
+  if (bookmarksArray.length > 0) {
+    readBookmarkCounter.innerHTML = `Read Bookmarks: ${readBookmarks}`;
+  } else {
+    readBookmarkCounter.innerHTML = '';
+  }
+}
+
+function unreadBookmarksCounter() {
+  var unreadBookmarks = 0;
+  for (var i = 0; i < bookmarksArray.length; i++) {
+    if (bookmarksArray[i].read === false) {
+      unreadBookmarks++;
+    }
+  }
+  if (bookmarksArray.length > 0) {
+    unreadBookmarkCounter.innerHTML = `Unread Bookmarks: ${unreadBookmarks}`;
+  } else {
+    unreadBookmarkCounter.innerHTML = '';
+  }
+}
+
+function clearReadBookmarks() {
+  for (var i = 0; i < bookmarksArray.length; i++) {
+    if (bookmarksArray[i].read === true) {
+      bookmarksArray.splice(i, 1);
+      clearReadBookmarks();
+    }
+  }
+
+  displayBookmarks();
+  bookmarkCounter();
+  readBookmarksCounter();
+  unreadBookmarksCounter();
+}
+
+function displayClearBookmarksButton() {
+  if (bookmarksArray.length === 0) {
+    clearReadBookmarksButton.classList.add('display-none');
+  } else {
+    clearReadBookmarksButton.classList.remove('display-none');
+  }
+}
+displayClearBookmarksButton();
