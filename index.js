@@ -129,19 +129,22 @@ function removeBookmark(e) {
     e.target.className &&
     e.target.className === 'delete-button'
   ) {
-    // 3. target the delete button on the boomark
-    var bookmarkElement = e.target.parentNode.parentNode;
-    var bookmarkIndex = bookmarkElement.dataset.index;
-    // 4. when delete button is pressed removes bookmark from the array
+    var confirmResponse = confirm('Are you sure you want to delete this item?');
+    if (confirmResponse) {
+      // 3. target the delete button on the boomark
+      var bookmarkElement = e.target.parentNode.parentNode;
+      var bookmarkIndex = bookmarkElement.dataset.index;
+      // 4. when delete button is pressed removes bookmark from the array
 
-    bookmarksArray.splice(bookmarkIndex, 1);
-    console.log(bookmarksArray);
-    // 5. displays bookmarks without the deleted bookmark
-    displayBookmarks();
-    bookmarkCounter();
-    readBookmarksCounter();
-    unreadBookmarksCounter();
-    displayClearBookmarksButton();
+      bookmarksArray.splice(bookmarkIndex, 1);
+      console.log(bookmarksArray);
+      // 5. displays bookmarks without the deleted bookmark
+      displayBookmarks();
+      bookmarkCounter();
+      readBookmarksCounter();
+      unreadBookmarksCounter();
+      displayClearBookmarksButton();
+    }
   }
 }
 
