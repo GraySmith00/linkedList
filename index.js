@@ -172,6 +172,7 @@ function clearReadBookmarks() {
   bookmarkCounter();
   readBookmarksCounter();
   unreadBookmarksCounter();
+  displayClearBookmarksButton();
 }
 
 function displayClearBookmarksButton() {
